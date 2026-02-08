@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Knock Knock</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow-y: auto;
+
+        background:
+          linear-gradient(rgba(255, 214, 232, 0.55), rgba(255, 214, 232, 0.55)),
+          url("https://img.freepik.com/premium-vector/bear-doll-with-cakes-design-seamless-pattern_62298-77.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .page {
+        display: none;
+        min-height: 100vh;
+        width: 100%;
+        text-align: center;
+        padding: 80px 0;
+      }
+
+      .active {
+        display: block;
+      }
+
+      /* ---------- POSTCARD THEME ---------- */
+      .card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(8px);
+        width: 85%;
+        max-width: 420px;
+        margin: auto;
+        padding: 30px;
+        border-radius: 22px;
+        box-shadow: 0 10px 30px rgba(235, 111, 152, 0.35);
+      }
+
+      h1 {
+        color: hotpink;
+      }
+
+      p {
+        margin-top: 15px;
+        font-size: 18px;
+      }
+
+      .btn {
+        background: #ff4d88;
+        color: white;
+        border: none;
+        padding: 12px 26px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      /* ---------- GIFT GIF ---------- */
+      .gift-gif {
+        width: 160px;
+        margin: 25px auto;
+        cursor: pointer;
+        animation: float 2s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* ---------- TEDDY GAME ---------- */
+      .teddies {
+        display: flex;
+        justify-content: center;
+        gap: 35px;
+        margin-top: 30px;
+        border-radius: 20px;
+      }
+
+      .teddy {
+        font-size: 80px;
+        cursor: pointer;
+        transition: transform 0.3s;
+        border-radius: 20px;
+      }
+
+      .teddy:hover {
+        transform: scale(1.2);
+        border-radius: 20px;
+      }
+
+      /* ---------- POPUP ---------- */
+      .popup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      .popup-content {
+        background: #fff0f7;
+        padding: 30px;
+        border-radius: 15px;
+        width: 300px;
+        text-align: center;
+      }
+
+      /* ---------- FINAL PAGE ---------- */
+      /* --- FIX PAGE 3 IMAGE WITHOUT TOUCHING HTML --- */
+      .doll img {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        border-radius: 18px;
+        margin-bottom: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      }
+
+      /* Keep animation smooth for image */
+      .doll {
+        display: flex;
+        justify-content: center;
+        animation: pop 1.2s infinite alternate;
+      }
+
+      @keyframes pop {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-20px);
+        }
+      }
+      .abc{
+        border-radius: 20px;
+      }
+      #button{
+        background-color: #ff4d88;
+        color: white;
+        border-radius: 10px;
+        border: 1px solid  #ff4d88 ;
+        height: 30px;
+      }
+    
+    </style>
+  </head>
+
+  <body>
+    <!-- PAGE 1 -->
+    <div class="page active" id="page1">
+      <div class="card">
+        <h1>Ready to Unlock The Surprise?</h1>
+
+        <img
+          src="https://i.pinimg.com/originals/f2/30/ce/f230cec0befdcb9fa58e8548d5faf00f.gif"
+          class="gift-gif"
+          onclick="showMessage()"
+          alt="Gift"
+        />
+
+        <p id="msg"></p>
+
+        <button
+          class="btn"
+          id="continueBtn"
+          onclick="goToPage(2)"
+          style="display: none"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="page2">
+      <div class="card">
+        <h1>Pick the Right Car 🚖</h1>
+        <p>Only one car opens the surprise</p>
+
+        <div class="teddies">
+          <div
+            class="teddy"
+            onclick="lose('You lost 😜<br>')"
+          >
+            <img  src="OIP.jpeg" height="80px" width="80px"class="abc" alt="BMW">
+          </div>
+
+          <div
+            class="teddy"
+            onclick="lose('You WIN 😝<br>What Clothes look good on me? (TO INDUES) ')"
+    
+          >
+            <img src="OIP.jpeg" height="80px" width="80px"class="abc" alt="BMW">
+          </div>
+
+          <div class="teddy" onclick="goToPage(3)">
+            <img src="OIP.jpeg" height="80px" width="80px"class="abc" alt="BMW">
+            
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="page3">
+      <div class="card">
+        <div class="doll">
+          <img
+            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWZxNWVsN211aDdyMXowaXV1ODJ2aGs1MGF3NnVudXBzbDhzMTk4ZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zvqgeQB5p9w5FiHGXM/giphy.gif"
+            alt="Special for you"
+          />
+        </div>
+        <h1>💗</h1>
+        <p>خاص تیرے لئے !!!!</p><br>
+       <button
+          
+          id="button"
+          onclick="goToPage(1)"
+          
+        >
+          THANK YOU
+        </button>
+      </div>
+    </div>
+
+    <!-- POPUP -->
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <p id="popupText"></p>
+        <button class="btn" onclick="closePopup()">Okay</button>
+      </div>
+    </div>
+
+    <script>
+      function showMessage() {
+        document.getElementById("msg").innerHTML =
+          "You need to play the below game to open your suprise😶‍🌫️ ";
+        document.getElementById("continueBtn").style.display = "inline-block";
+      }
+
+      function goToPage(num) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("page" + num).classList.add("active");
+      }
+
+      function lose(text) {
+        document.getElementById("popupText").innerHTML = text;
+        document.getElementById("popup").style.display = "flex";
+      }
+
+      function closePopup() {
+        document.getElementById("popup").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
